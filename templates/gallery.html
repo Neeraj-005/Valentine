@@ -36,17 +36,70 @@
 
     <!-- Photo Grid - Mobile Optimized -->
     <div class="photo-grid">
-        {% for photo in photos %}
-        <div class="photo-card" onclick="openPhotoModal('{{ photo }}', '{{ photo.rsplit('.', 1)[0] }}')">
+        <div class="photo-card"
+            onclick="openPhotoModal('01 - The Day I Couldn\'t Stop Smiling.jpeg', 'The Day I Couldn\'t Stop Smiling')">
             <div class="photo-wrapper">
-                <img src="{{ url_for('static', filename='photos/' + photo) }}" alt="{{ photo.rsplit('.', 1)[0] }}"
-                    class="photo-img">
+                <img src="{{ url_for('static', filename='photos/01 - The Day I Couldn\'t Stop Smiling.jpeg') }}"
+                    alt="The Day I Couldn't Stop Smiling" class="photo-img">
                 <div class="photo-overlay">
-                    <span class="photo-label">{{ photo.rsplit('.', 1)[0] }}</span>
+                    <span class="photo-label">The Day I Couldn't Stop Smiling</span>
                 </div>
             </div>
         </div>
-        {% endfor %}
+
+        <div class="photo-card"
+            onclick="openPhotoModal('02 - Always thinking about us(I REALLY CANT GET IT OUT OF MY BRAIN PLZ DONT HELP).jpeg', 'Always thinking about us')">
+            <div class="photo-wrapper">
+                <img src="{{ url_for('static', filename='photos/02 - Always thinking about us(I REALLY CANT GET IT OUT OF MY BRAIN PLZ DONT HELP).jpeg') }}"
+                    alt="Always thinking about us" class="photo-img">
+                <div class="photo-overlay">
+                    <span class="photo-label">Always thinking about us</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-card"
+            onclick="openPhotoModal('03 - The first day i Bought flowers for my girll.jpeg', 'The first day i Bought flowers for my girll')">
+            <div class="photo-wrapper">
+                <img src="{{ url_for('static', filename='photos/03 - The first day i Bought flowers for my girll.jpeg') }}"
+                    alt="The first day i Bought flowers for my girll" class="photo-img">
+                <div class="photo-overlay">
+                    <span class="photo-label">The first day i Bought flowers for my girll</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-card"
+            onclick="openPhotoModal('04 - Comfort Feels Like This.jpeg', 'Comfort Feels Like This')">
+            <div class="photo-wrapper">
+                <img src="{{ url_for('static', filename='photos/04 - Comfort Feels Like This.jpeg') }}"
+                    alt="Comfort Feels Like This" class="photo-img">
+                <div class="photo-overlay">
+                    <span class="photo-label">Comfort Feels Like This</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-card" onclick="openPhotoModal('05 - My Favorite Place.jpeg', 'My Favorite Place')">
+            <div class="photo-wrapper">
+                <img src="{{ url_for('static', filename='photos/05 - My Favorite Place.jpeg') }}"
+                    alt="My Favorite Place" class="photo-img">
+                <div class="photo-overlay">
+                    <span class="photo-label">My Favorite Place</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-card"
+            onclick="openPhotoModal('06 - Moments I Wish Would Pause.jpeg', 'Moments I Wish Would Pause')">
+            <div class="photo-wrapper">
+                <img src="{{ url_for('static', filename='photos/06 - Moments I Wish Would Pause.jpeg') }}"
+                    alt="Moments I Wish Would Pause" class="photo-img">
+                <div class="photo-overlay">
+                    <span class="photo-label">Moments I Wish Would Pause</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Full Screen Photo Modal -->
