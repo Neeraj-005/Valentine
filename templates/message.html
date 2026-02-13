@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter For You 💕</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="message-page">
+    <!-- Floating Hearts -->
+    <div class="hearts-container">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <a href="/" class="nav-link">🏠 Home</a>
+        <a href="/gallery" class="nav-link">📷 Our Photos</a>
+        <a href="/message" class="nav-link active">💕 Love Letter</a>
+    </nav>
+
+    <!-- Message Section -->
+    <section class="message-section">
+        <div class="message-container">
+            <h1 class="message-title">A Letter For My Dear Vedaharini Ramakrishnan 💌</h1>
+
+            <div class="letter-card">
+                <div id="typedLetter" class="letter-content">
+                    <!-- Text will be typed here by JavaScript -->
+                </div>
+            </div>
+
+            <button class="surprise-button" onclick="showSurprise()">
+                ✨ Click for a Surprise ✨
+            </button>
+        </div>
+    </section>
+
+    <!-- Surprise Modal -->
+    <div id="surpriseModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">You Mean So Much to Me ❤️</h2>
+            <p class="modal-text">You are my everything, my world, my happiness.</p>
+            <button class="close-modal" onclick="closeSurprise()">Close 💕</button>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Background Music Player -->
+    {% if music_files %}
+    <audio id="musicPlayer" loop>
+        <source src="{{ url_for('static', filename='music/' + music_files[0]) }}" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" class="music-toggle" onclick="toggleMusic()" title="Toggle Music">
+        <span id="musicIcon">🔊</span>
+    </button>
+
+    <!-- Hidden playlist data -->
+    <script>
+        const playlist = [
+            {% for music_file in music_files %}
+        "{{ url_for('static', filename='music/' + music_file) }}"{% if not loop.last %}, {% endif %}
+        {% endfor %}
+        ];
+    </script>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        // Start typing animation when page loads
+        window.addEventListener('DOMContentLoaded', function () {
+            const letterText = `I don’t think words can fully capture what you mean to me, but this little website is just a small reminder of how truly special you are in my life.
+
+From the very first moment I saw you, something felt different. I can’t really explain it, but I knew there was something about you that I would never forget. Since then, every conversation, every laugh, and every moment we’ve shared has meant more to me than I can properly put into words.
+
+What we have feels calm, natural, and incredibly comforting. Whether we’re talking about random things, being silly, or just spending quiet time together, those moments have become very precious to me.
+
+You’ve become someone I deeply care about — someone who brings me happiness, peace, and a kind of warmth that’s hard to describe. Being around you simply feels… right.
+
+I made this for you because you deserve something thoughtful and genuine. It may not be perfect, but it’s made with sincerity and with you in mind — which is what makes it special to me.
+
+Here’s to us, to our memories, and to all the beautiful moments still waiting for us.
+
+No matter where life takes us, I just want you to know that you are incredibly important to me and always will be. 💕`;
+
+            typeWriter(letterText, 'typedLetter', 30);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories 📷</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="gallery-page">
+    <!-- Floating Hearts -->
+    <div class="hearts-container">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <a href="/" class="nav-link">🏠 Home</a>
+        <a href="/gallery" class="nav-link active">📷 Our Photos</a>
+        <a href="/message" class="nav-link">💕 Love Letter</a>
+    </nav>
+
+    <!-- Gallery Header -->
+    <header class="gallery-header">
+        <h1 class="gallery-title">Our Memories 📸</h1>
+        <p class="gallery-subtitle">Replace these placeholders with your favorite photos together</p>
+    </header>
+
+    <!-- Photo Grid - Mobile Optimized -->
+    <div class="photo-grid">
+        {% for photo in photos %}
+        <div class="photo-card" onclick="openPhotoModal('{{ photo }}', '{{ photo.rsplit('.', 1)[0] }}')">
+            <div class="photo-wrapper">
+                <img src="{{ url_for('static', filename='photos/' + photo) }}" alt="{{ photo.rsplit('.', 1)[0] }}"
+                    class="photo-img">
+                <div class="photo-overlay">
+                    <span class="photo-label">{{ photo.rsplit('.', 1)[0] }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Full Screen Photo Modal -->
+    <div id="photoModal" class="modal photo-modal">
+        <span class="close-modal-photo" onclick="closePhotoModal()">&times;</span>
+
+        <!-- Navigation Buttons -->
+        <button class="photo-nav photo-nav-prev" onclick="navigatePhoto(-1)" title="Previous Photo">
+            &#10094;
+        </button>
+        <button class="photo-nav photo-nav-next" onclick="navigatePhoto(1)" title="Next Photo">
+            &#10095;
+        </button>
+
+        <div class="modal-photo-content">
+            <img id="modalImage" src="" alt="Full size photo">
+            <p id="modalCaption" class="modal-caption"></p>
+        </div>
+    </div>
+
+    <!-- Background Music Player -->
+    {% if music_files %}
+    <audio id="musicPlayer" loop>
+        <source src="{{ url_for('static', filename='music/' + music_files[0]) }}" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" class="music-toggle" onclick="toggleMusic()" title="Toggle Music">
+        <span id="musicIcon">🔊</span>
+    </button>
+
+    <!-- Hidden playlist data -->
+    <script>
+        const playlist = [
+            {% for music_file in music_files %}
+        "{{ url_for('static', filename='music/' + music_file) }}"{% if not loop.last %}, {% endif %}
+        {% endfor %}
+        ];
+    </script>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

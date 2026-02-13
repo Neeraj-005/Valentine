@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Girlll ❤️</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Floating Hearts Background Animation -->
+    <div class="hearts-container">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <a href="/" class="nav-link active">🏠 Home</a>
+        <a href="/gallery" class="nav-link">📷 Our Photos</a>
+        <a href="/message" class="nav-link">💕 Love Letter</a>
+    </nav>
+
+    <!-- Hero Section - Full Screen -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">For My Girlll ❤️</h1>
+            <p class="hero-subtitle fade-in-delay">Every moment with you is my favorite memory. This little corner of
+                the internet is just for us. ✨</p>
+
+            <a href="/gallery" class="primary-button pulse">
+                Open Our Memories 📸
+            </a>
+
+            <button class="surprise-button" onclick="showSurprise()">
+                ✨ Click for a Surprise ✨
+            </button>
+        </div>
+    </section>
+
+    <!-- Surprise Modal -->
+    <div id="surpriseModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">You Mean So Much to Me ❤️</h2>
+            <p class="modal-text">You are my everything, my world, my happiness.</p>
+            <button class="close-modal" onclick="closeSurprise()">Close 💕</button>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Background Music Player -->
+    {% if music_files %}
+    <audio id="musicPlayer" loop>
+        <source src="{{ url_for('static', filename='music/' + music_files[0]) }}" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" class="music-toggle" onclick="toggleMusic()" title="Toggle Music">
+        <span id="musicIcon">🔊</span>
+    </button>
+
+    <!-- Hidden playlist data -->
+    <script>
+        const playlist = [
+            {% for music_file in music_files %}
+        "{{ url_for('static', filename='music/' + music_file) }}"{% if not loop.last %}, {% endif %}
+        {% endfor %}
+        ];
+    </script>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
